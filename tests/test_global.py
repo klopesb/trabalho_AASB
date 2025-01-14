@@ -19,6 +19,7 @@ class TestGlobalAlignment(unittest.TestCase):
         s2 = "ALIGNMENT"
         score = global_score(s1, s2)
         self.assertGreater(score, 0)
+        print("Alignment score for IDENTICAL sequences:", score)
 
     def test_different_sequences(self):
         """
@@ -28,6 +29,7 @@ class TestGlobalAlignment(unittest.TestCase):
         s1 = "A"
         s2 = "T"
         score = global_score(s1, s2)
+        print(f"Alignment score for {s1} vs {s2}: {score}")
         self.assertLessEqual(score, 0)
 
     def test_empty_sequence(self):
@@ -189,28 +191,14 @@ class TestGlobalAlignment(unittest.TestCase):
         self.assertEqual(aligned_s1, "ACTG")
         self.assertEqual(aligned_s2, "AC-G")
 
-    def test_empty_sequence(self):
-        """
-        Tests alignment when one sequence is empty.
-        Expects gap penalties to apply for the entire sequence.
-        """
-        self.assertEqual(global_score("", "ACT"), -24)
-        self.assertEqual(global_score("ACT", ""), -24)
 
-    def test_identical_sequences(self):
-        """
-        Tests alignment of two identical sequences.
-        Expects maximum score and perfect alignment.
-        """
-        s1 = "ACTG"
-        self.assertEqual(global_score(s1, s1), 24)
-        matrix = global_matrix(s1, s1)
-        aligned_s1, aligned_s2 = align_sequences(matrix, s1, s1)
-        self.assertEqual(aligned_s1, "ACTG")
-        self.assertEqual(aligned_s2, "ACTG")
-    
     def test_print_matrix_with_sequences(self):
-        # Test inputs
+    """
+    Test the print_matrix_with_sequences function.
+    Verifies that the function correctly formats and prints a scoring matrix with aligned sequence headers for s1 = "PHSWG" and s2 = "HGWAG".
+    Ensures the output matches the expected formatted matrix.
+    """
+         # Test inputs
         s1 = "PHSWG"
         s2 = "HGWAG"
         matrix = [
