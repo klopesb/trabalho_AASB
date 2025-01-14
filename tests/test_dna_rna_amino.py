@@ -1,7 +1,7 @@
 import unittest
 
 # Import the functions to be tested
-from dna_rna_amino import contains_no_spaces, is_valid_sequence, get_sequence_type, count_bases, main
+from src.dna_rna_amino import contains_no_spaces, is_valid_sequence, get_sequence_type, count_bases, main
 
 class TestBioFunctions(unittest.TestCase):
     def test_contains_no_spaces(self):

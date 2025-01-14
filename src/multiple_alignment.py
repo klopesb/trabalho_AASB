@@ -1,4 +1,4 @@
-from global_alignment import global_matrix, traceback
+from src.global_alignment import global_matrix, align_sequences
 
 def star_alignment(sequences):
     """
@@ -27,7 +27,7 @@ def star_alignment(sequences):
     for seq in sequences:
         if seq != center:
             matrix = global_matrix(center, seq)
-            aligned_center, aligned_seq = traceback(matrix, center, seq)
+            aligned_center, aligned_seq = align_sequences(matrix, center, seq)
             alignment_map[seq] = aligned_seq
             
             # Update max length and pad if necessary

@@ -1,5 +1,5 @@
 import unittest
-from multiple_alignment import star_alignment
+from src.multiple_alignment import star_alignment
 
 class TestStarAlignment(unittest.TestCase):
     def test_empty_input(self):
