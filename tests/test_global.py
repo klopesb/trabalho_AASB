@@ -29,7 +29,6 @@ class TestGlobalAlignment(unittest.TestCase):
         s1 = "A"
         s2 = "T"
         score = global_score(s1, s2)
-        print(f"Alignment score for {s1} vs {s2}: {score}")
         self.assertLessEqual(score, 0)
 
     def test_empty_sequence(self):
