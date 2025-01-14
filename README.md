@@ -66,6 +66,13 @@ s1, s2 = "YOURSEQ1", "YOURSEQ2"
 score = global_score(s1, s2)
 matrix = global_matrix(s1, s2)
 aligned_s1, aligned_s2 = align_sequences(matrix, s1, s2)
+
+# Example: Create and visualize a phylogenetic tree
+sequences = ["MEEPQSDPSY", "MEEPQSDPSV", "MEEPQSDLSV"]
+names = ["Human", "Mouse", "Rat"]
+tree = create_phylogenetic_tree(sequences, sequence_names=names)
+display_ascii_tree(tree)  # Show tree in console
+newick = tree_to_newick(tree)  # Get Newick format string
 ```
 
 ## License
