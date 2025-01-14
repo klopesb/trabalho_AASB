@@ -1,5 +1,5 @@
 import unittest
-from src.phylogenetic_tree import create_phylogenetic_tree, tree_to_newick
+from src.phylogenetic_tree import create_phylogenetic_tree, tree_to_newick, display_ascii_tree
 import os
 
 class TestPhylogeneticTree(unittest.TestCase):
