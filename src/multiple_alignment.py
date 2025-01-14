@@ -1,4 +1,4 @@
-from global_alignment import global_matrix, align_sequences
+from .global_alignment import global_matrix, align_sequences
 
 def star_alignment(sequences):
     """
