@@ -19,7 +19,6 @@ class TestGlobalAlignment(unittest.TestCase):
         s2 = "ALIGNMENT"
         score = global_score(s1, s2)
         self.assertGreater(score, 0)
-        print("Alignment score for IDENTICAL sequences:", score)
 
     def test_different_sequences(self):
         """
