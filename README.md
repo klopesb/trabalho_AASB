@@ -31,7 +31,7 @@ git clone https://github.com/yourusername/trabalho_AASB.git
 
 2. Install required dependencies:
 ```bash
-pip install biopython matplotlib
+pip install -r requirements.txt
 ```
 
 ## Usage
