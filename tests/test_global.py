@@ -18,7 +18,6 @@ class TestGlobalAlignment(unittest.TestCase):
         s2 = "ALIGNMENT"
         score = global_score(s1, s2)
         self.assertGreater(score, 0)
-        print("Alignment score for IDENTICAL sequences:", score)
 
     def test_different_sequences(self):
         """
@@ -28,7 +27,6 @@ class TestGlobalAlignment(unittest.TestCase):
         s1 = "A"
         s2 = "T"
         score = global_score(s1, s2)
-        print(f"Alignment score for {s1} vs {s2}: {score}")
         self.assertLessEqual(score, 0)
 
     def test_empty_sequence(self):
@@ -98,8 +96,6 @@ class TestGlobalAlignment(unittest.TestCase):
         matrix = global_matrix(s1, s2)
         self.assertEqual(matrix[0][0], 0)
         self.assertEqual(matrix[1][1], subst("A", "A"))
-        print("Scoring matrix for IDENTICAL sequences:")
-        pprint(matrix)
 
     def test_repeated_characters_matrix(self):
         """
@@ -110,8 +106,6 @@ class TestGlobalAlignment(unittest.TestCase):
         s2 = "AAA"
         matrix = global_matrix(s1, s2)
         self.assertEqual(matrix[4][3], subst("A", "A") * 3 + -8)
-        print("Scoring matrix for repeated characters:")
-        pprint(matrix)
 
     def test_repeated_characters_score(self):
         """
