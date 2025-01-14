@@ -85,32 +85,18 @@ newick = tree_to_newick(tree)  # Get Newick format string
 print(f"Newick format: {newick}")
 
 # Example: DNA/RNA sequence analysis
-from src.dna_rna_amino import main, get_sequence_type, count_bases
+from src.dna_rna_amino import main
 
-# Analyze a sequence
-dna_seq = "ATCG"
-result = main(dna_seq)
-print(result)  # Shows RNA conversion and base counts
-
-# Get sequence type
-seq_type = get_sequence_type("AUCG")
-print(f"Sequence type: {seq_type}")  # Shows "RNA"
-
-# Count bases in sequence
-base_counts = count_bases("ATCGATCG")
-print(f"Base counts: {base_counts}")  # Shows frequency of each base
+# Analyze a DNA sequence
+result = main("ATCG")
+print(result)  # Shows RNA conversion and analysis results
 
 # Example: Protein sequence analysis
-from src.get_proteins import get_all_proteins, compute_reverse_complement
+from src.get_proteins import get_all_proteins
 
-# Get all possible proteins from a DNA sequence
-dna = "ATGCATGCTAAGTATTAG"
-proteins = get_all_proteins(dna)
+# Find proteins in a DNA sequence
+proteins = get_all_proteins("ATGCATGCTAAGTATTAG")
 print(f"Found proteins: {proteins}")
-
-# Get reverse complement of DNA
-rev_comp = compute_reverse_complement(dna)
-print(f"Reverse complement: {rev_comp}")
 ```
 
 ## Running Tests
