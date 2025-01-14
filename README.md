@@ -65,7 +65,7 @@ from src.phylogenetic_tree import create_phylogenetic_tree, display_ascii_tree
 s1, s2 = "YOURSEQ1", "YOURSEQ2"
 score = global_score(s1, s2)
 matrix = global_matrix(s1, s2)
-aligned_s1, aligned_s2 = traceback(matrix, s1, s2)
+aligned_s1, aligned_s2 = align_sequences(matrix, s1, s2)
 ```
 
 ## License
