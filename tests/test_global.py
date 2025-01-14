@@ -1,6 +1,6 @@
 import unittest
 from src.my_blosum import Blosum62
-from src.global_alignment import global_score, subst, global_matrix, traceback, print_matrix_with_sequences
+from src.global_alignment import global_score, subst, global_matrix, align_sequences, print_matrix_with_sequences
 from pprint import pprint
 import unittest
 from io import StringIO
@@ -184,7 +184,7 @@ class TestGlobalAlignment(unittest.TestCase):
         score = global_score(s1, s2)
         self.assertEqual(score, 11)
         matrix = global_matrix(s1, s2)
-        aligned_s1, aligned_s2 = traceback(matrix, s1, s2)
+        aligned_s1, aligned_s2 = align_sequences(matrix, s1, s2)
         self.assertEqual(aligned_s1, "ACTG")
         self.assertEqual(aligned_s2, "AC-G")
 
@@ -204,7 +204,7 @@ class TestGlobalAlignment(unittest.TestCase):
         s1 = "ACTG"
         self.assertEqual(global_score(s1, s1), 24)
         matrix = global_matrix(s1, s1)
-        aligned_s1, aligned_s2 = traceback(matrix, s1, s1)
+        aligned_s1, aligned_s2 = align_sequences(matrix, s1, s1)
         self.assertEqual(aligned_s1, "ACTG")
         self.assertEqual(aligned_s2, "ACTG")
     

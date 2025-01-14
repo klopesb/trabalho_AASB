@@ -56,7 +56,7 @@ python src/phylogenetic_tree.py
 For actual use in your code, import the modules and use their functions:
 
 ```python
-from src.global_alignment import global_score, global_matrix, traceback
+from src.global_alignment import global_score, global_matrix, align_sequences
 from src.local_alignment import local_score, local_matrix, traceback
 from src.multiple_alignment import star_alignment
 from src.phylogenetic_tree import create_phylogenetic_tree, display_ascii_tree

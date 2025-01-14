@@ -57,7 +57,7 @@ def global_matrix(s1, s2, g=-8):
 
     return scoring_matrix
 
-def traceback(scoring_matrix, s1, s2, g=-8):
+def align_sequences(scoring_matrix, s1, s2, g=-8):
     """
     Reconstructs the optimal alignment from the scoring matrix.
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     # Compute the scoring matrix and final alignment
     scoring_matrix = global_matrix(s1, s2)
     score = scoring_matrix[len(s1)][len(s2)]
-    aligned_s1, aligned_s2 = traceback(scoring_matrix, s1, s2)
+    aligned_s1, aligned_s2 = align_sequences(scoring_matrix, s1, s2)
 
     # Print the results
     print("Global alignment score:", score)
