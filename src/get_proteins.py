@@ -1,6 +1,6 @@
 # Constants for DNA processing
 from typing import List
-from .table_amino import table
+from src.table_amino import table
 
 CODON_LENGTH = 3  # Codon length for extraction.
 START_CODON = 'M'  # Start codon.
