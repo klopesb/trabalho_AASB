@@ -19,37 +19,29 @@ def star_alignment(sequences):
     if len(sequences) == 1:
         return sequences
 
+    # Create alignment mapping
+    alignment_map = {}
+    
     # Get pairwise alignments with center
-    alignments = []
     for seq in sequences:
-        if seq != center:
+        if seq == center:
+            alignment_map[seq] = center
+        else:
             matrix = global_matrix(center, seq)
             aligned_center, aligned_seq = traceback(matrix, center, seq)
-            alignments.append((aligned_center, aligned_seq))
+            alignment_map[seq] = aligned_seq
+            # Update max length if this alignment is longer
+            if len(aligned_center) > len(alignment_map[center]):
+                # Pad existing alignments
+                for k in alignment_map:
+                    alignment_map[k] = alignment_map[k] + '-' * (len(aligned_center) - len(alignment_map[k]))
+            elif len(aligned_center) < len(alignment_map[center]):
+                # Pad this alignment
+                alignment_map[seq] = aligned_seq + '-' * (len(alignment_map[center]) - len(aligned_seq))
     
-    if not alignments:  # All sequences are identical
-        return sequences
-        
-    # Find the maximum length among all alignments
-    max_len = max(len(aligned[0]) for aligned in alignments)
-    
-    # Initialize the result with the center sequence
-    result = [center + '-' * (max_len - len(center))]
-    
-    # Process each sequence
-    processed = {center}  # Keep track of processed sequences
-    
-    # Add aligned sequences
-    for _, aligned_seq in alignments:
-        orig_seq = ''.join(c for c in aligned_seq if c != '-')  # Get original sequence
-        if orig_seq not in processed:
-            result.append(aligned_seq + '-' * (max_len - len(aligned_seq)))
-            processed.add(orig_seq)
-    
-    # Add any remaining identical sequences
+    # Return aligned sequences in original order
+    result = []
     for seq in sequences:
-        if seq not in processed:
-            result.append(seq + '-' * (max_len - len(seq)))
-            processed.add(seq)
+        result.append(alignment_map[seq])
     
     return result
