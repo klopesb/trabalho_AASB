@@ -122,6 +122,7 @@ if __name__ == "__main__":
     ]
     
     # Perform multiple sequence alignment
+    from multiple_alignment import star_alignment
     aligned_sequences = star_alignment(sequences)
     print("Multiple Sequence Alignment:")
     for seq in aligned_sequences:
