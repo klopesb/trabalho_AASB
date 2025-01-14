@@ -196,7 +196,12 @@ class TestGlobalAlignment(unittest.TestCase):
 
    
     def test_print_matrix_with_sequences(self):
-        # Test inputs
+    """
+    Test the print_matrix_with_sequences function.
+    Verifies that the function correctly formats and prints a scoring matrix with aligned sequence headers for s1 = "PHSWG" and s2 = "HGWAG". 
+    Ensures the output matches the expected formatted matrix.
+    """
+         # Test inputs
         s1 = "PHSWG"
         s2 = "HGWAG"
         matrix = [
