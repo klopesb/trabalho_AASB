@@ -47,3 +47,20 @@ def star_alignment(sequences):
         result.append(alignment_map[seq])
     
     return result
+
+if __name__ == "__main__":
+    # Example sequences
+    sequences = [
+        "MEEPQSDPSY",
+        "MEEPQSDPSV",
+        "MEEPQSDLSV"
+    ]
+    
+    print("Original sequences:")
+    for seq in sequences:
+        print(seq)
+        
+    print("\nAligned sequences:")
+    aligned_sequences = star_alignment(sequences)
+    for seq in aligned_sequences:
+        print(seq)

@@ -66,3 +66,20 @@ def tree_to_newick(tree):
     tree_io = StringIO()
     Phylo.write(tree, tree_io, 'newick')
     return tree_io.getvalue()
+
+if __name__ == "__main__":
+    # Example sequences (already aligned)
+    sequences = [
+        "MEEPQSDPSY",
+        "MEEPQSDPSV",
+        "MEEPQSDLSV"
+    ]
+    sequence_names = ["Human", "Mouse", "Rat"]
+    
+    # Create and visualize the tree
+    output_file = "example_tree.png"
+    tree = create_phylogenetic_tree(sequences, sequence_names, output_file)
+    
+    print("Tree in Newick format:")
+    print(tree_to_newick(tree))
+    print(f"\nTree visualization saved to {output_file}")
