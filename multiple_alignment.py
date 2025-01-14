@@ -19,25 +19,27 @@ def star_alignment(sequences):
     if len(sequences) == 1:
         return sequences
 
-    # Create alignment mapping
-    alignment_map = {}
+    # Create alignment mapping and initialize with center sequence
+    alignment_map = {center: center}
+    max_length = len(center)
     
     # Get pairwise alignments with center
     for seq in sequences:
-        if seq == center:
-            alignment_map[seq] = center
-        else:
+        if seq != center:
             matrix = global_matrix(center, seq)
             aligned_center, aligned_seq = traceback(matrix, center, seq)
             alignment_map[seq] = aligned_seq
-            # Update max length if this alignment is longer
-            if len(aligned_center) > len(alignment_map[center]):
+            
+            # Update max length and pad if necessary
+            if len(aligned_center) > max_length:
                 # Pad existing alignments
+                padding = '-' * (len(aligned_center) - max_length)
                 for k in alignment_map:
-                    alignment_map[k] = alignment_map[k] + '-' * (len(aligned_center) - len(alignment_map[k]))
-            elif len(aligned_center) < len(alignment_map[center]):
+                    alignment_map[k] = alignment_map[k] + padding
+                max_length = len(aligned_center)
+            elif len(aligned_center) < max_length:
                 # Pad this alignment
-                alignment_map[seq] = aligned_seq + '-' * (len(alignment_map[center]) - len(aligned_seq))
+                alignment_map[seq] = aligned_seq + '-' * (max_length - len(aligned_seq))
     
     # Return aligned sequences in original order
     result = []
