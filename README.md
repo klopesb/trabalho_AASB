@@ -34,21 +34,38 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Sequence Alignment
+### Example Usage
+
+Each module includes example cases that demonstrate basic functionality:
+
 ```python
-# For global alignment
+# Run global alignment example with sequences "HGWAG" and "PHSWG"
 python src/global_alignment.py
 
-# For local alignment
+# Run local alignment example with sequences "HGWAG" and "PHSWG"
 python src/local_alignment.py
 
-# For multiple sequence alignment
+# Run multiple sequence alignment example with sequences:
+# "MEEPQSDPSY", "MEEPQSDPSV", "MEEPQSDLSV"
 python src/multiple_alignment.py
+
+# Run phylogenetic tree construction example with the above sequences
+python src/phylogenetic_tree.py
 ```
 
-### Phylogenetic Tree Construction
+For actual use in your code, import the modules and use their functions:
+
 ```python
-python src/phylogenetic_tree.py
+from src.global_alignment import global_score, global_matrix, traceback
+from src.local_alignment import local_score, local_matrix, traceback
+from src.multiple_alignment import star_alignment
+from src.phylogenetic_tree import create_phylogenetic_tree, display_ascii_tree
+
+# Example: Perform global alignment
+s1, s2 = "YOURSEQ1", "YOURSEQ2"
+score = global_score(s1, s2)
+matrix = global_matrix(s1, s2)
+aligned_s1, aligned_s2 = traceback(matrix, s1, s2)
 ```
 
 ## License
