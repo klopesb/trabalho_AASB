@@ -1,4 +1,4 @@
-from global_alignment import global_matrix, traceback
+from src.global_alignment import global_matrix, traceback
 
 def star_alignment(sequences):
     """

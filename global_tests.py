@@ -1,6 +1,6 @@
 import unittest
-from my_blosum import Blosum62
-from global_alignment import global_score, subst, global_matrix, traceback, print_matrix_with_sequences
+from src.my_blosum import Blosum62
+from src.global_alignment import global_score, subst, global_matrix, traceback, print_matrix_with_sequences
 from pprint import pprint
 import unittest
 from io import StringIO
