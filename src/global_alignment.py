@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from my_blosum import Blosum62
+from src.my_blosum import Blosum62
 from pprint import pprint
 
 blosum = Blosum62()
