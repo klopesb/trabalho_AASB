@@ -75,6 +75,24 @@ display_ascii_tree(tree)  # Show tree in console
 newick = tree_to_newick(tree)  # Get Newick format string
 ```
 
+## Running Tests
+
+The project includes comprehensive unit tests in the `tests` folder. To run the tests:
+
+```bash
+# Run all tests
+python -m unittest discover tests
+
+# Run specific test files
+python -m unittest tests/test_global.py
+python -m unittest tests/test_local.py
+python -m unittest tests/test_multiple_alignment.py
+python -m unittest tests/test_phylogenetic_tree.py
+
+# Run with verbose output
+python -m unittest -v discover tests
+```
+
 ## License
 
 This project is open source and available under the MIT License.
