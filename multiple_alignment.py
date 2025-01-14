@@ -19,22 +19,20 @@ def star_alignment(sequences):
     # Get pairwise alignments with center
     alignments = []
     for seq in sequences:
-        if seq != center:
+        if seq == center:
+            alignments.append((center, center))
+        else:
             matrix = global_matrix(center, seq)
             aligned_center, aligned_seq = traceback(matrix, center, seq)
             alignments.append((aligned_center, aligned_seq))
     
-    # If no alignments were made (only one sequence)
-    if not alignments:
-        return [center]
-    
-    # Initialize final alignment with first pairwise alignment
+    # Initialize with first alignment
     final_center = alignments[0][0]
     final_alignments = [alignments[0][1]]
     
     # Add gaps to make all alignments same length
     max_len = len(final_center)
-    for _, aligned_seq in alignments[1:]:
+    for aligned_center, aligned_seq in alignments[1:]:
         # Add gaps to current sequence if needed
         if len(aligned_seq) < max_len:
             aligned_seq = aligned_seq + '-' * (max_len - len(aligned_seq))
