@@ -16,33 +16,40 @@ def star_alignment(sequences):
     # Choose center sequence (longest one)
     center = max(sequences, key=len)
     
+    if len(sequences) == 1:
+        return sequences
+
     # Get pairwise alignments with center
     alignments = []
     for seq in sequences:
-        if seq == center:
-            alignments.append((center, center))
-        else:
+        if seq != center:
             matrix = global_matrix(center, seq)
             aligned_center, aligned_seq = traceback(matrix, center, seq)
             alignments.append((aligned_center, aligned_seq))
     
-    # Initialize with first alignment
-    final_center = alignments[0][0]
-    final_alignments = [alignments[0][1]]
+    if not alignments:  # All sequences are identical
+        return sequences
+        
+    # Find the maximum length among all alignments
+    max_len = max(len(aligned[0]) for aligned in alignments)
     
-    # Add gaps to make all alignments same length
-    max_len = len(final_center)
-    for aligned_center, aligned_seq in alignments[1:]:
-        # Add gaps to current sequence if needed
-        if len(aligned_seq) < max_len:
-            aligned_seq = aligned_seq + '-' * (max_len - len(aligned_seq))
-        # Add gaps to previous sequences if needed
-        elif len(aligned_seq) > max_len:
-            final_center = final_center + '-' * (len(aligned_seq) - max_len)
-            final_alignments = [seq + '-' * (len(aligned_seq) - max_len) 
-                              for seq in final_alignments]
-            max_len = len(aligned_seq)
-        final_alignments.append(aligned_seq)
+    # Initialize the result with the center sequence
+    result = [center + '-' * (max_len - len(center))]
     
-    # Add center sequence to result
-    return [final_center] + final_alignments
+    # Process each sequence
+    processed = {center}  # Keep track of processed sequences
+    
+    # Add aligned sequences
+    for _, aligned_seq in alignments:
+        orig_seq = ''.join(c for c in aligned_seq if c != '-')  # Get original sequence
+        if orig_seq not in processed:
+            result.append(aligned_seq + '-' * (max_len - len(aligned_seq)))
+            processed.add(orig_seq)
+    
+    # Add any remaining identical sequences
+    for seq in sequences:
+        if seq not in processed:
+            result.append(seq + '-' * (max_len - len(seq)))
+            processed.add(seq)
+    
+    return result
