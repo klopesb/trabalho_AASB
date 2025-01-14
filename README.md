@@ -10,7 +10,6 @@ A collection of Python tools for biological sequence analysis, including:
 
 ## Features
 
-- DNA/RNA sequence validation and base counting
 - Pairwise sequence alignment with BLOSUM62 scoring
 - Multiple sequence alignment capabilities
 - Phylogenetic tree visualization (ASCII and graphical output)
@@ -35,12 +34,6 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-
-### DNA/RNA Sequence Analysis
-```python
-python src/funções.py
-# Follow the prompts to input your sequence
-```
 
 ### Sequence Alignment
 ```python
