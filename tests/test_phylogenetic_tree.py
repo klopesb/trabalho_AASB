@@ -38,14 +38,20 @@ class TestPhylogeneticTree(unittest.TestCase):
             
     def test_tree_visualization(self):
         """Test tree visualization output"""
-        output_file = "test_tree.png"
-        try:
-            tree = create_phylogenetic_tree(self.sequences, output_file=output_file)
-            self.assertTrue(os.path.exists(output_file))
-        finally:
-            # Clean up
-            if os.path.exists(output_file):
-                os.remove(output_file)
+        # Capture stdout to verify ASCII tree output
+        from io import StringIO
+        import sys
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        
+        tree = create_phylogenetic_tree(self.sequences)
+        display_ascii_tree(tree)
+        
+        # Restore stdout
+        sys.stdout = sys.__stdout__
+        
+        # Verify that something was output (exact format may vary)
+        self.assertGreater(len(captured_output.getvalue()), 0)
 
 if __name__ == '__main__':
     unittest.main()
