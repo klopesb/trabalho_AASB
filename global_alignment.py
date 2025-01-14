@@ -112,23 +112,19 @@ def print_matrix_with_sequences(scoring_matrix, s1, s2):
         print(s2[i], " ".join(f"{cell:>3}" for cell in row))
         
 if __name__ == "__main__":
-    # Example sequences
-    sequences = [
-        "HEAGAWGHEE",
-        "PAWHEAE",
-        "HEAGAWGHEE",
-        "PAWHEAE",
-        "HEAGAWGHEE"
-    ]
-    
-    # Perform multiple sequence alignment
-    from multiple_alignment import star_alignment
-    aligned_sequences = star_alignment(sequences)
-    print("Multiple Sequence Alignment:")
-    for seq in aligned_sequences:
-        print(seq)
-        
-    # Create and visualize phylogenetic tree
-    from phylogenetic_tree import create_phylogenetic_tree
-    tree = create_phylogenetic_tree(aligned_sequences, output_file="phylogenetic_tree.png")
-    print("\nPhylogenetic tree created and saved as 'phylogenetic_tree.png'")
+    s1 = "HGWAG"
+    s2 = "PHSWG"
+
+    # Compute the scoring matrix and final alignment
+    scoring_matrix = global_matrix(s1, s2)
+    score = scoring_matrix[len(s1)][len(s2)]
+    aligned_s1, aligned_s2 = traceback(scoring_matrix, s1, s2)
+
+    # Print the results
+    print("Global alignment score:", score)
+    print("\nScoring matrix:")
+    print_matrix_with_sequences(scoring_matrix, s1, s2)
+
+    print("\nOptimal global alignment:")
+    print("Sequence 1:", aligned_s1)
+    print("Sequence 2:", aligned_s2)
