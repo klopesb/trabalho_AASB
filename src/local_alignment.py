@@ -1,4 +1,4 @@
-from .my_blosum import Blosum62
+from my_blosum import Blosum62
 from pprint import pprint
 
 blosum = Blosum62()
