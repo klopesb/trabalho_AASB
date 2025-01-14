@@ -67,6 +67,15 @@ def tree_to_newick(tree):
     Phylo.write(tree, tree_io, 'newick')
     return tree_io.getvalue()
 
+def display_ascii_tree(tree):
+    """
+    Displays the phylogenetic tree in ASCII format in the console.
+    
+    Args:
+        tree: Phylogenetic tree object
+    """
+    Phylo.draw_ascii(tree)
+
 if __name__ == "__main__":
     # Example sequences (already aligned)
     sequences = [
@@ -80,6 +89,9 @@ if __name__ == "__main__":
     output_file = "example_tree.png"
     tree = create_phylogenetic_tree(sequences, sequence_names, output_file)
     
-    print("Tree in Newick format:")
+    print("Tree in ASCII format:")
+    display_ascii_tree(tree)
+    
+    print("\nTree in Newick format:")
     print(tree_to_newick(tree))
     print(f"\nTree visualization saved to {output_file}")
