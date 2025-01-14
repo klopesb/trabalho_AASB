@@ -3,17 +3,15 @@ from Bio.Phylo.TreeConstruction import DistanceCalculator, DistanceTreeConstruct
 from Bio.Align import MultipleSeqAlignment
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
-import matplotlib.pyplot as plt
 from io import StringIO
 
-def create_phylogenetic_tree(sequences, sequence_names=None, output_file=None):
+def create_phylogenetic_tree(sequences, sequence_names=None):
     """
     Creates a phylogenetic tree from a list of sequences using UPGMA method.
     
     Args:
         sequences: List of aligned sequences
         sequence_names: List of names for the sequences (optional)
-        output_file: Path to save the tree visualization (optional)
         
     Returns:
         tree: Phylogenetic tree object
@@ -42,18 +40,6 @@ def create_phylogenetic_tree(sequences, sequence_names=None, output_file=None):
     # Construct tree using UPGMA
     constructor = DistanceTreeConstructor(calculator, 'upgma')
     tree = constructor.build_tree(alignment)
-    
-    # Draw and save tree if output file is specified
-    if output_file:
-        try:
-            import matplotlib.pyplot as plt
-            fig = plt.figure(figsize=(10, 8))
-            axes = fig.add_subplot(1, 1, 1)
-            Phylo.draw(tree, axes=axes, do_show=False)
-            plt.savefig(output_file)
-            plt.close()
-        except ImportError:
-            print("Warning: matplotlib is required for saving tree visualizations. The tree was created but not saved to file.")
     
     return tree
 
@@ -90,12 +76,10 @@ if __name__ == "__main__":
     sequence_names = ["Human", "Mouse", "Rat"]
     
     # Create and visualize the tree
-    output_file = "example_tree.png"
-    tree = create_phylogenetic_tree(sequences, sequence_names, output_file)
+    tree = create_phylogenetic_tree(sequences, sequence_names)
     
     print("Tree in ASCII format:")
     display_ascii_tree(tree)
     
     print("\nTree in Newick format:")
     print(tree_to_newick(tree))
-    print(f"\nTree visualization saved to {output_file}")

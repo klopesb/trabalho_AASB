@@ -12,14 +12,13 @@ A collection of Python tools for biological sequence analysis, including:
 
 - Pairwise sequence alignment with BLOSUM62 scoring
 - Multiple sequence alignment capabilities
-- Phylogenetic tree visualization (ASCII and graphical output)
+- Phylogenetic tree visualization (ASCII output)
 - Built-in BLOSUM62 substitution matrix
 
 ## Requirements
 
 - Python 3.x
 - Biopython (for phylogenetic tree functionality)
-- Matplotlib (optional, only needed for saving tree visualizations)
 
 ## Installation
 
