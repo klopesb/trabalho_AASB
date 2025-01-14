@@ -1,4 +1,7 @@
 import unittest
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.my_blosum import Blosum62
 from src.global_alignment import global_score, subst, global_matrix, align_sequences, print_matrix_with_sequences
 from pprint import pprint
