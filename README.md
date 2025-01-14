@@ -19,7 +19,7 @@ A collection of Python tools for biological sequence analysis, including:
 
 - Python 3.x
 - Biopython (for phylogenetic tree functionality)
-- Matplotlib (for tree visualization)
+- Matplotlib (optional, only needed for saving tree visualizations)
 
 ## Installation
 

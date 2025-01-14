@@ -45,11 +45,15 @@ def create_phylogenetic_tree(sequences, sequence_names=None, output_file=None):
     
     # Draw and save tree if output file is specified
     if output_file:
-        fig = plt.figure(figsize=(10, 8))
-        axes = fig.add_subplot(1, 1, 1)
-        Phylo.draw(tree, axes=axes, do_show=False)
-        plt.savefig(output_file)
-        plt.close()
+        try:
+            import matplotlib.pyplot as plt
+            fig = plt.figure(figsize=(10, 8))
+            axes = fig.add_subplot(1, 1, 1)
+            Phylo.draw(tree, axes=axes, do_show=False)
+            plt.savefig(output_file)
+            plt.close()
+        except ImportError:
+            print("Warning: matplotlib is required for saving tree visualizations. The tree was created but not saved to file.")
     
     return tree
 
