@@ -1,5 +1,5 @@
 import unittest
-from get_proteins import (
+from ..src.get_proteins import (
     get_complementary_character,
     compute_reverse_complement,
     extract_codons,
