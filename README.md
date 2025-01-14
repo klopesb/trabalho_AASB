@@ -85,16 +85,13 @@ The project includes comprehensive unit tests in the `tests` folder. To run the 
 
 ```bash
 # Run all tests
-python -m unittest discover tests
+python -m unittest discover -s tests
 
 # Run specific test files
 python -m unittest tests.test_global
 python -m unittest tests.test_local
 python -m unittest tests.test_multiple_alignment
 python -m unittest tests.test_phylogenetic_tree
-
-# Run with verbose output
-python -m unittest -v discover tests
 ```
 
 ## License
