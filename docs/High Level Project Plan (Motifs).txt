@@ -1,0 +1,20 @@
+------------------------------------------------Description -----------------------------------------------------------------------------------------
+This project implements a comprehensive tool for calculating PWM (Position Weight Matrix), PSSM (Position Specific Scoring Matrix), and sequence evaluation to identify the most probable subsequences within biological sequences. Additionally, it supports deterministic and stochastic motif identification based on defined thresholds or exact matches. The project aims to provide foundational bioinformatics tools for sequence analysis and motif discovery.
+
+The algorithm processes input sequences to derive positional matrices, evaluate sequence probabilities, and extract significant motifs based on probabilistic or deterministic criteria. It is designed for modularity, making it suitable for extending functionality in advanced genomic studies.
+
+--------------------------------------- Key features of the project --------------------------------------------------------------------------------------
+PWM and PSSM Calculation:
+	PWM Calculation: Computes a position weight matrix by normalizing sequence symbol frequencies, considering pseudocounts.
+	PSSM Calculation: Derives a position-specific scoring matrix using log-odds against background frequencies. Includes customizable background frequency input.
+	Sequence Evaluation: Computes the probability of a given sequence based on PWM. Identifies the most probable subsequences of specified lengths using a sliding window approach.
+
+Motif Identification:
+	Deterministic Motifs: Finds exact subsequence matches across all input sequences.
+	Stochastic Motifs: Identifies high-probability motifs based on PWM and user-defined thresholds.
+
+Validation and Error Handling: Ensures input sequences are uniform in length. Validates sequence content against supported alphabets (DNA or protein). Handles missing or incomplete background frequency data.
+
+Unit Testing and Debugging: Provides comprehensive test cases for validation, PWM/PSSM computation, and motif identification. Includes edge cases like empty sequences, invalid characters, and zero probabilities. The result of this project is a versatile sequence analysis tool that combines probabilistic modeling with motif detection. It is suitable for analyzing biological data and serves as a foundation for more sophisticated genomic tools.
+
+The project delivers a versatile and modular sequence analysis tool by generating precise PWM and PSSM outputs tailored to the input sequences, suitable for motif discovery and probabilistic analysis, 
