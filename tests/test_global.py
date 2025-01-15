@@ -210,12 +210,12 @@ class TestGlobalAlignment(unittest.TestCase):
 
         # Capture the output
         expected_output = (
-            "    -   P   H   S   W   G\n"
+            "    -   H   G   W   A   G\n"
             "-   0  -8 -16 -24 -32 -40\n"
-            "H  -8  -2 -10 -18 -26 -34\n"
-            "G -16 -10  -4  -8 -16 -24\n"
-            "W -24 -18 -12  -7  11   3\n"
-            "A -32 -25 -20 -11   3  11\n"
+            "P  -8  -2 -10 -18 -26 -34\n"
+            "H -16 -10  -4  -8 -16 -24\n"
+            "S -24 -18 -12  -7  11   3\n"
+            "W -32 -25 -20 -11   3  11\n"
             "G -40 -33 -27 -19  -5   9\n"
         )
 
