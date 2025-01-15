@@ -4,7 +4,6 @@
 
 The Star Alignment algorithm is a progressive multiple sequence alignment method that uses a center sequence as a reference to align all other sequences.
 
-
 ### Key Steps
 
 1. **Center Selection**
