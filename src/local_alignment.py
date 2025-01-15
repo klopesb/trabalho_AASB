@@ -126,10 +126,10 @@ def print_matrix_with_sequences(matrix, s1, s2):
     s1 = "-" + s1
     s2 = "-" + s2
 
-    print("   ", "   ".join(s1))
+    print("   ", "   ".join(s2))
 
     for i, row in enumerate(matrix):
-        print(s2[i], " ".join(f"{cell:>3}" for cell in row))
+        print(s1[i], " ".join(f"{cell:>3}" for cell in row))
 
 if __name__ == "__main__":
     s1 = "HGWAG"
