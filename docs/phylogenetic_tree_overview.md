@@ -10,6 +10,45 @@ UPGMA (Unweighted Pair Group Method with Arithmetic Mean) is a simple hierarchic
 
 The method assumes a constant rate of evolution across all lineages, making it suitable for closely related sequences but less accurate for divergent ones.
 
+### Example Illustration
+
+Consider three simple DNA sequences:
+```
+Seq1: ATCG
+Seq2: ATTG
+Seq3: ATCG
+```
+
+1. Distance Matrix Calculation:
+```
+     Seq1  Seq2  Seq3
+Seq1   0    0.25   0
+Seq2  0.25   0    0.25
+Seq3   0    0.25   0
+```
+
+2. Tree Construction Process:
+
+```
+Step 1: Join Seq1 and Seq3 (distance = 0) - First Branch
+                    ┌────── Seq1
+   Branch 1 ────────┤
+                    └────── Seq3
+
+Step 2: Connect Branch 1 with Seq2 (distance = 0.25)
+                    ┌────── Seq1
+              ┌─────┤
+   Root ──────┤     └────── Seq3     (Branch 1)
+              │
+              └──────────── Seq2     (Branch 2)
+```
+
+Final Newick format: ((Seq1,Seq3),Seq2)
+
+Note: This tree has two main branches:
+1. Branch 1: Contains Seq1 and Seq3 (identical sequences)
+2. Branch 2: Contains Seq2 (more distant sequence)
+
 ## High Level Overview
 
 The UPGMA algorithm is used to construct phylogenetic trees from sequence data.
@@ -102,43 +141,3 @@ records = [SeqRecord(Seq(seq), id=name) for seq, name in zip(sequences, sequence
 - **Space**: O(N^2) for storing distance matrix
   where N = number of sequences
 
-### Example Illustration
-
-Consider three simple DNA sequences:
-```
-Seq1: ATCG
-Seq2: ATTG
-Seq3: ATCG
-```
-
-1. Distance Matrix Calculation:
-```
-     Seq1  Seq2  Seq3
-Seq1   0    0.25   0
-Seq2  0.25   0    0.25
-Seq3   0    0.25   0
-```
-
-2. Tree Construction Process:
-
-```
-Step 1: Join Seq1 and Seq3 (distance = 0) - First Branch
-                    ┌────── Seq1
-   Branch 1 ────────┤
-                    └────── Seq3
-
-Step 2: Connect Branch 1 with Seq2 (distance = 0.25)
-                    ┌────── Seq1
-              ┌─────┤
-   Root ──────┤     └────── Seq3     (Branch 1)
-              │
-              └──────────── Seq2     (Branch 2)
-```
-
-Final Newick format: ((Seq1,Seq3),Seq2)
-
-Note: This tree has two main branches:
-1. Branch 1: Contains Seq1 and Seq3 (identical sequences)
-2. Branch 2: Contains Seq2 (more distant sequence)
-
-This example demonstrates how sequences with identical or similar patterns are grouped together first, creating a hierarchical representation of their relationships.
