@@ -1,8 +1,18 @@
 # Phylogenetic Tree Construction Overview
 
+## What is UPGMA?
+
+UPGMA (Unweighted Pair Group Method with Arithmetic Mean) is a simple hierarchical clustering method used to construct phylogenetic trees. It works by:
+1. Calculating distances between all sequence pairs
+2. Iteratively joining the closest pairs into clusters
+3. Computing new average distances between clusters
+4. Repeating until all sequences are connected in a tree
+
+The method assumes a constant rate of evolution across all lineages, making it suitable for closely related sequences but less accurate for divergent ones.
+
 ## High Level Overview
 
-The Unweighted Pair Group Method with Arithmetic Mean (UPGMA) is used to construct phylogenetic trees from sequence data.
+The UPGMA algorithm is used to construct phylogenetic trees from sequence data.
 
 ### Key Steps
 
