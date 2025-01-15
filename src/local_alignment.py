@@ -5,52 +5,79 @@ blosum = Blosum62()
 
 def subst(x, y):
     """
-    Substitution function that returns the substitution score for characters x and y
-    based on the BLOSUM62 matrix.
+    Calculates the substitution score for aligning two characters `x` and `y` based on the BLOSUM62 matrix.
+
+    Args:
+    - x (str): A character from the first sequence.
+    - y (str): A character from the second sequence.
+
+    Returns:
+    - int: The substitution score from the BLOSUM62 matrix.
     """
     return blosum.subst(x, y)
 
 def local_score(s1, s2, g=-8):
     """
-    Implements local alignment (Smith-Waterman) to find the best matching subsequence
-    between s1 and s2.
+    Computes the maximum alignment score for local alignment (Smith-Waterman) between two sequences.
+
+    Args:
+    - s1 (str): The first sequence to align.
+    - s2 (str): The second sequence to align.
+    - g (int): The gap penalty, default is -8.
+
+    Returns:
+    - int: The highest alignment score found in the scoring matrix.
     """
-    # Matrix to store scores
     n, m = len(s1), len(s2)
     dp = [[0] * (m + 1) for _ in range(n + 1)]
     max_score = 0
 
-    # Fill the scoring matrix
     for i in range(1, n + 1):
         for j in range(1, m + 1):
-            match = dp[i - 1][j - 1] + subst(s1[i - 1], s2[j - 1])  # Substitution
-            delete = dp[i - 1][j] + g                              # Gap in s2
-            insert = dp[i][j - 1] + g                              # Gap in s1
-            dp[i][j] = max(0, match, delete, insert)               # Reset to 0 if score is negative
-            max_score = max(max_score, dp[i][j])                   # Update max score
+            match = dp[i - 1][j - 1] + subst(s1[i - 1], s2[j - 1])      # Substitution
+            delete = dp[i - 1][j] + g                                   # Gap in s2
+            insert = dp[i][j - 1] + g                                   # Gap in s1
+            dp[i][j] = max(0, match, delete, insert)                    # Reset to 0 if score is negative
+            max_score = max(max_score, dp[i][j])                        # Update max score
 
-    return max_score  # Return only the maximum score
+    return max_score                                                     
 
 def local_matrix(s1, s2, g=-8):
     """
-    Computes the scoring matrix for local alignment (Smith-Waterman).
+    Computes the full scoring matrix for local alignment (Smith-Waterman) between two sequences.
+
+    Args:
+    - s1 (str): The first sequence to align.
+    - s2 (str): The second sequence to align.
+    - g (int): The gap penalty, default is -8.
+
+    Returns:
+    - list[list[int]]: The scoring matrix where each cell represents the optimal alignment score for subsequences ending at that cell.
     """
     n, m = len(s1), len(s2)
     dp = [[0] * (m + 1) for _ in range(n + 1)]
 
-    # Fill the scoring matrix
     for i in range(1, n + 1):
         for j in range(1, m + 1):
             match = dp[i - 1][j - 1] + subst(s1[i - 1], s2[j - 1])
             delete = dp[i - 1][j] + g
             insert = dp[i][j - 1] + g
-            dp[i][j] = max(0, match, delete, insert)  # Reset to 0 for local alignment
+            dp[i][j] = max(0, match, delete, insert)  #Reset to 0 for local alignment
 
     return dp
 
 def traceback(dp, s1, s2, g=-8):
     """
-    Performs traceback to retrieve the optimal local alignment.
+    Extracts the optimal local alignment from a scoring matrix by performing traceback from the highest scoring cell.
+
+    Args:
+    - dp (list[list[int]]): The scoring matrix computed by the Smith-Waterman algorithm.
+    - s1 (str): The first sequence.
+    - s2 (str): The second sequence.
+    - g (int): The gap penalty, default is -8.
+
+    Returns:
+    - tuple[str, str]: The aligned subsequences of `s1` and `s2` that correspond to the optimal local alignment.
     """
     n, m = len(s1), len(s2)
     max_score = 0
@@ -86,16 +113,21 @@ def traceback(dp, s1, s2, g=-8):
 
 def print_matrix_with_sequences(matrix, s1, s2):
     """
-    Prints the scoring matrix with the sequences aligned at the top and left edges.
+    Prints the scoring matrix with the two sequences aligned to the top and left of the matrix for easier visualization.
+
+    Args:
+    - matrix (list[list[int]]): The scoring matrix.
+    - s1 (str): The first sequence.
+    - s2 (str): The second sequence.
+
+    Returns:
+    - None: Prints the matrix directly to the console.
     """
-    # Add gap symbol ("-") to the sequences
     s1 = "-" + s1
     s2 = "-" + s2
 
-    # Print the top sequence with proper alignment
     print("   ", "   ".join(s1))
 
-    # Print each row of the matrix with the left sequence
     for i, row in enumerate(matrix):
         print(s2[i], " ".join(f"{cell:>3}" for cell in row))
 
