@@ -91,3 +91,38 @@ records = [SeqRecord(Seq(seq), id=name) for seq, name in zip(sequences, sequence
 - **Time**: O(N^2) for distance matrix calculation
 - **Space**: O(N^2) for storing distance matrix
   where N = number of sequences
+
+### Example Illustration
+
+Consider three simple DNA sequences:
+```
+Seq1: ATCG
+Seq2: ATTG
+Seq3: ATCG
+```
+
+1. Distance Matrix Calculation:
+```
+     Seq1  Seq2  Seq3
+Seq1   0    0.25   0
+Seq2  0.25   0    0.25
+Seq3   0    0.25   0
+```
+
+2. Tree Construction Process:
+
+```
+Step 1: Join Seq1 and Seq3 (distance = 0)
+                 ┌── Seq1
+   Root ──────┤
+                 └── Seq3
+
+Step 2: Join with Seq2 (distance = 0.25)
+                 ┌── Seq1
+   Root ──────┤── Seq3
+                 └── Seq2
+```
+
+Final Newick format: ((Seq1,Seq3),Seq2)
+
+This example demonstrates how sequences with identical or similar patterns are grouped together first, creating a hierarchical representation of their relationships.

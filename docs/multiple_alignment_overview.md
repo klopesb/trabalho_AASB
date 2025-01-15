@@ -83,3 +83,41 @@ alignment_map = {center: center}
   - N = number of sequences
   - L = length of longest sequence
 - **Space Complexity**: O(N * L) for storing aligned sequences
+
+### Example Illustration
+
+Consider three DNA sequences to be aligned:
+```
+Seq1: ATCG
+Seq2: ATTCG
+Seq3: TCG
+```
+
+Star alignment process using Seq2 (longest) as center:
+
+1. Initial center selection (Seq2):
+```
+ATTCG
+```
+
+2. Align Seq1 to center:
+```
+ATTCG (center)
+AT-CG (Seq1)
+```
+
+3. Align Seq3 to center:
+```
+ATTCG (center)
+AT-CG (Seq1)
+-TTCG (Seq3)
+```
+
+Final alignment:
+```
+AT-CG
+ATTCG
+-TTCG
+```
+
+This example shows how gaps (-) are inserted to maintain alignment length and preserve sequence relationships.
