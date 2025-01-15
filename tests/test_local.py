@@ -195,12 +195,12 @@ class TestLocalAlignment(unittest.TestCase):
 
         # Capture the output
         expected_output = (
-            "    -   P   H   S   W   G\n"
+            "    -   H   G   W   A   G\n"
             "-   0   0   0   0   0   0\n"
-            "H   0   2   0   0   0   0\n"
-            "G   0   0   4   2   0   0\n"
-            "W   0   0   2   6   4   2\n"
-            "A   0   0   0   4   8   6\n"
+            "P   0   2   0   0   0   0\n"
+            "H   0   0   4   2   0   0\n"
+            "S   0   0   2   6   4   2\n"
+            "W   0   0   0   4   8   6\n"
             "G   0   0   0   2   6   9\n"
         )
 
