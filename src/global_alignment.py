@@ -104,12 +104,12 @@ def print_matrix_with_sequences(scoring_matrix, s1, s2):
     s1 = "-" + s1
     s2 = "-" + s2
 
-    # Print the top sequence (s1) with proper alignment
-    print("   ", "   ".join(s1))
+    # Print the top sequence (s2) with proper alignment
+    print("   ", "   ".join(s2))
 
-    # Print the scoring matrix with the left sequence (s2)
+    # Print the scoring matrix with the left sequence (s1)
     for i, row in enumerate(scoring_matrix):
-        print(s2[i], " ".join(f"{cell:>3}" for cell in row))
+        print(s1[i], " ".join(f"{cell:>3}" for cell in row))
         
 if __name__ == "__main__":
     s1 = "HGWAG"
