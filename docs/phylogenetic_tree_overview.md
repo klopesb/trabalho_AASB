@@ -141,3 +141,14 @@ records = [SeqRecord(Seq(seq), id=name) for seq, name in zip(sequences, sequence
 - **Space**: O(N^2) for storing distance matrix
   where N = number of sequences
 
+## Test Coverage
+
+The test suite verifies:
+- Empty input handling
+- Sequence name count validation
+- Basic tree creation functionality
+- Custom sequence name integration
+- Tree visualization output
+- Newick format generation
+- Presence of all sequence names in output
+
