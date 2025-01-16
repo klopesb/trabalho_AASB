@@ -86,7 +86,8 @@ def count_bases(sequence):
     :return: A dictionary containing unique bases as keys and their respective counts as values.
     :rtype: dict
     """
-    return {base: sequence.count(base) for base in sorted(set(sequence))}
+    seen = set()
+    return {base: sequence.count(base) for base in sequence if not (base in seen or seen.add(base))}
 
 
 def main(sequence):
@@ -126,14 +127,14 @@ def main(sequence):
         return "ERROR: Not a valid DNA/RNA/Amino Acid sequence"
 
     # Count the amino acids (or bases for DNA/RNA) in the order they appear in the sequence
-    base_counts = {base: sequence.count(base) for base in sequence}  # Count only those present in the sequence
+    base_counts = {base: sequence.count(base) for base in sequence}
 
-    # Display base counts in the order of their first occurrence
-    seen = set()  # To avoid duplicate counts
-    for base in sequence:
-        if base not in seen:
-            seen.add(base)
-            result.append(f"{base}: {base_counts[base]}")
+    # Count the amino acids (or bases for DNA/RNA) in the order they appear in the sequence
+    base_counts = count_bases(sequence)
+
+    # Append the counts to the result in the desired format
+    for base, count in base_counts.items():
+        result.append(f"{base}: {count}")
 
     return "\n".join(result)
 
