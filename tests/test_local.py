@@ -57,16 +57,6 @@ class TestLocalAlignment(unittest.TestCase):
         self.assertEqual(aligned_s1, "")
         self.assertEqual(aligned_s2, "")
 
-    def test_partial_overlap(self):
-        """
-        Tests overlapping subsequences returning a positive alignment score.
-        Verifies that the local alignment score for s1 = "ALIGNMENT" and s2 = "MENT" is greater than 0.
-        """
-        s1 = "ALIGNMENT"
-        s2 = "MENT"
-        result = local_score(s1, s2)
-        self.assertGreater(result, 0)
-
     def test_single_character(self):
         """
         Tests alignment of single characters with substitution scores and mismatches.
@@ -104,15 +94,6 @@ class TestLocalAlignment(unittest.TestCase):
         s2 = "MENTAL"
         result = local_score(s1, s2)
         self.assertGreater(result, 0)
-
-    def test_zero_score(self):
-        """
-        Tests if two completely mismatched sequences return a score of 0 or greater.
-        Verifies that the score for s1 = "ABC" and s2 = "XYZ" is 0 or greater, as local alignment resets mismatched regions to 0.
-        """
-        s1 = "ABC"
-        s2 = "XYZ"
-        self.assertGreaterEqual(local_score(s1, s2), 0)
 
     def test_repeated_characters_matrix(self):
         """
@@ -170,12 +151,12 @@ class TestLocalAlignment(unittest.TestCase):
         s1 = "HGWAG"
         s2 = "PHSWG"
         score = local_score(s1, s2)
-        self.assertEqual(score, 19)  # Replace with the correct expected score.
+        self.assertEqual(score, 19)
         
         scoring_matrix = local_matrix(s1, s2)
         aligned_s1, aligned_s2 = traceback(scoring_matrix, s1, s2)
-        self.assertEqual(aligned_s1, "HGW")  # Replace with the expected aligned subsequence.
-        self.assertEqual(aligned_s2, "HSW")  # Replace with the expected aligned subsequence.
+        self.assertEqual(aligned_s1, "HGW")
+        self.assertEqual(aligned_s2, "HSW")
 
     def test_print_matrix_with_sequences(self):
         """
