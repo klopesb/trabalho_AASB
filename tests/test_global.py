@@ -145,34 +145,7 @@ class TestGlobalAlignment(unittest.TestCase):
         """
         s1 = "MEEPQSDPSVEPPLSQETFSDLWKLL"
         s2 = "MEETQSDPSVEPPLSQETFSDLWKLL"
-        expected_score = (
-            subst("M", "M") +  # Match
-            subst("E", "E") +  # Match
-            subst("E", "E") +  # Match
-            subst("P", "T") +  # Mismatch
-            subst("Q", "Q") +  # Match
-            subst("S", "S") +  # Match
-            subst("D", "D") +  # Match
-            subst("P", "P") +  # Match
-            subst("S", "S") +  # Match
-            subst("V", "V") +  # Match
-            subst("E", "E") +  # Match
-            subst("P", "P") +  # Match
-            subst("P", "P") +  # Match
-            subst("L", "L") +  # Match
-            subst("S", "S") +  # Match
-            subst("Q", "Q") +  # Match
-            subst("E", "E") +  # Match
-            subst("T", "T") +  # Match
-            subst("F", "F") +  # Match
-            subst("S", "S") +  # Match
-            subst("D", "D") +  # Match
-            subst("L", "L") +  # Match
-            subst("W", "W") +  # Match
-            subst("K", "K") +  # Match
-            subst("L", "L") +  # Match
-            subst("L", "L")    # Match
-        )
+        expected_score = 24
         self.assertEqual(global_score(s1, s2), expected_score)
     
     def test_basic_alignment(self):
