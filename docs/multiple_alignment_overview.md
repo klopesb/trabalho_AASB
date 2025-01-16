@@ -122,3 +122,15 @@ alignment_map = {center: center}
   - N = number of sequences
   - L = length of longest sequence
 - **Space Complexity**: O(N * L) for storing aligned sequences
+
+## Test Coverage
+
+The test suite verifies:
+- Empty input handling
+- Single sequence alignment
+- Identical sequence alignment
+- Simple two-sequence alignment
+- Multiple sequence alignment with varying lengths
+- Real protein sequence alignment
+- Consistent gap insertion
+- Output sequence length equality
